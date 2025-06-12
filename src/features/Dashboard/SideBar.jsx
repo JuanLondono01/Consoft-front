@@ -14,7 +14,6 @@ export default function Sidebar() {
       <nav className="space-y-2">
         <Link to="/dashboard/roles" className={linkClasses("/dashboard/roles")}>Roles</Link>
         <Link to="/dashboard/users" className={linkClasses("/dashboard/users")}>Usuarios</Link>
-        <Link to="/dashboard/products" className={linkClasses("/dashboard/products")}>Productos</Link>
       </nav>
     </aside>
   );

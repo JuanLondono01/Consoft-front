@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const API_URL = import.meta.env.VITE_BASE_URL;
-const productsUrl = `${API_URL}/Products`;
+const productsUrl = `http://localhost:3001/products`;
 
 export async function getProducts() {
   const response = await axios.get(productsUrl, { withCredentials: true });
