@@ -4,18 +4,20 @@ import { updateRole } from '../api/services';
 const EditRoleModal = ({ role, onClose, onUpdated }) => {
   const [nombreRol, setNombreRol] = useState('');
   const [descripcion, setDescripcion] = useState('');
+  const [estado, setEstado] = useState(true); 
 
   useEffect(() => {
     if (role) {
       setNombreRol(role.nombreRol);
       setDescripcion(role.descripcion);
+      setEstado(role.estado); 
     }
   }, [role]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await updateRole(role._id, { nombreRol, descripcion });
+      await updateRole(role._id, { nombreRol, descripcion, estado }); 
       onUpdated();
       onClose();
     } catch (error) {
@@ -43,6 +45,17 @@ const EditRoleModal = ({ role, onClose, onUpdated }) => {
             className="w-full px-4 py-2 border rounded"
             required
           />
+          <div className="flex items-center gap-2">
+            <input
+              type="checkbox"
+              checked={estado}
+              onChange={() => setEstado(!estado)}
+              id="estado"
+            />
+            <label htmlFor="estado">
+              {estado ? 'Activo' : 'Inactivo'}
+            </label>
+          </div>
           <div className="flex justify-end gap-4">
             <button
               type="button"

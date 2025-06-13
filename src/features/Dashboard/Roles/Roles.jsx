@@ -23,7 +23,7 @@ const Roles = () => {
   }, []);
 
   const handleDelete = async (id) => {
-    const confirm = window.confirm(`¿Estás seguro de eliminar el rol con ID ${id}?`);
+    const confirm = window.confirm(`¿Estás seguro de eliminar el rol?`);
     if (!confirm) return;
 
     try {
@@ -53,7 +53,6 @@ const Roles = () => {
       <table className="w-full table-auto border border-gray-300 mt-4">
         <thead className="bg-gray-200">
           <tr>
-            <th className="px-4 py-2 border">ID</th>
             <th className="px-4 py-2 border">Nombre</th>
             <th className="px-4 py-2 border">Descripción</th>
             <th className="px-4 py-2 border">Estado</th>
@@ -64,7 +63,6 @@ const Roles = () => {
           {roles.length > 0 ? (
             roles.map((role) => (
               <tr key={role._id} className="text-center border-t">
-                <td className="px-4 py-2 border">{role._id}</td>
                 <td className="px-4 py-2 border">{role.nombreRol}</td>
                 <td className="px-4 py-2 border">{role.descripcion}</td>
                 <td className="px-4 py-2 border">
@@ -88,7 +86,7 @@ const Roles = () => {
             ))
           ) : (
             <tr>
-              <td colSpan="5" className="px-4 py-4 text-center text-gray-500">
+              <td colSpan="4" className="px-4 py-4 text-center text-gray-500">
                 No hay roles registrados.
               </td>
             </tr>

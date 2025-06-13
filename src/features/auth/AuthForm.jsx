@@ -1,7 +1,6 @@
-// src/components/AuthForm.jsx
 import { useState } from "react";
+import { useNavigate } from "react-router-dom"; // ✅ Importar hook
 import { loginUser, registerUser } from './api/services';
-
 
 export default function AuthForm() {
   const [isLogin, setIsLogin] = useState(true);
@@ -11,8 +10,10 @@ export default function AuthForm() {
     direccion: "",
     telefono: "",
     password: "",
-    rol: "", // puedes autocompletarlo o poner un select más adelante
+    rol: "",
   });
+
+  const navigate = useNavigate();
 
   const toggleForm = () => setIsLogin(!isLogin);
 
@@ -29,15 +30,18 @@ export default function AuthForm() {
           correo: formData.correo,
           password: formData.password,
         });
+
         alert("Sesión iniciada correctamente");
-        console.log(res); // guarda token en localStorage si deseas
+        console.log(res);
+
+        navigate("/dashboard");
       } else {
         const res = await registerUser(formData);
         alert("Registro exitoso");
         console.log(res);
       }
     } catch (err) {
-      alert("Error: " + err.response?.data?.message || err.message);
+      alert("Error: " + (err.response?.data?.message || err.message));
     }
   };
 
